@@ -1,0 +1,63 @@
+nav{
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+  Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.nav-center{
+  width: 90vw;
+  max-width: 1170px;
+  color: hsl(209, 34%, 30%);
+}
+.nav-body{
+  width: 50vw;
+}
+
+.sidebar{
+  width: 100vw;
+  height: 100vh;
+  background-color: #FFF;
+  position: fixed;
+  transition: 0.3s ease-in-out all;
+  transform: translateX(0%);
+  display: block;
+  visibility: visible;
+  opacity: 1;
+}
+.hideSidebar{
+  transition: 0.3s ease-in-out all;
+  display: none;
+  transform: translateX(-150%);
+  visibility: hidden;
+  opacity: 0;
+}
+.sidebar-body{
+  width: 90vw;
+  max-width: 800px;
+  height: 90vh;
+  margin: auto 0;
+  border: solid;
+  position: relative;
+}
+
+.btn-close{
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+.sidebar-list{
+  width: 89vw;
+  margin-top: 8rem;
+}
+
+.sidebar-link{
+  width: 89vw;
+  text-align: center;
+  transition: 0.3s ease-in-out all;
+}
+.sidebar-link:hover{
+  background-color: #fecdd3;
+  color: #FFF;
+  cursor: pointer;
+  padding: 1rem;
+}
+

@@ -1,0 +1,11 @@
+<div class="featured-body bg-rose-100 ">
+    <p class="capitalize tracking-wider text-center text-3xl text-pink-300 font-medium py-5">featured products</p>
+    <div *ngIf="(products | async) as productItems">
+        <div class="featured-body-articles flex mx-auto justify-around">
+          <article *ngFor="let product of productItems" class="mt-6">
+            <img [src]=product.imgURL?.[0] alt="featured image" class="w-80 h-64 object-cover rounded shadow-xl">
+            <p class="capitalize tracking-wider text-center text-lg font-normal featured-body-article-colorText py-4">{{ product.name }}</p>
+          </article>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<section class="store">
+  <app-banner [bannerText]="'Store /'"/>
+  <div class="store-body mx-auto mt-10" *ngIf="(productStore$ | async) as productStore">
+      <section>
+        <input class="input rounded px-2 py-1 w-36" placeholder="Search" (keyup)="filterByKeyWord($event)">
+        <p class="tracking-wider capitalize font-medium pt-3 text-xl store-header">category</p>
+        <div class="flex flex-col items-start mt-5">
+            <button [ngClass]="productStore.category_selected === 'all' ? 'border-b-2' : ''" class="tracking-wider capitalize link py-1 text-base" (click)="filterByCategory('all')">all</button>
+            <button [ngClass]="productStore.category_selected === categoryItem ? 'border-b-2' : ''" *ngFor="let categoryItem of productStore.category" (click)="filterByCategory(categoryItem)" class="tracking-wider capitalize link py-1 text-base">{{ categoryItem }}</button>
+        </div>
+        <p class="tracking-wider capitalize font-medium pt-3 text-xl store-header">company</p>
+        <select (change)="filterByCompany($event)" class="input rounded px-1 py-1 capitalize">
+            <option (click)="filterByCompany('all')" class="capitalize tracking-wider">all</option>
+            <option *ngFor="let companie of productStore.company" class="capitalize tracking-wider">{{companie}}</option>
+        </select>
+        <div>
+          <p class="tracking-wider capitalize font-medium pt-3 text-xl store-header">colors</p>
+          <div class="flex items-center">
+            <button class="capitalize tracking-wider colorAll mr-1" [ngClass]="productStore.color_selected === 'all' ? 'border-b-2' : ''" (click)="filterByColor('all')">all</button>
+            <div *ngFor="let color of productStore.colors" [ngClass]="productStore.color_selected === color ? 'border-2' : ''" [style.background-color]="color" (click)="filterByColor(color)" class="colorDiv ml-0.5 opacity-50 cursor-pointer"></div>
+          </div>
+        </div>
+        <div>
+          <p class="tracking-wider capitalize font-medium pt-3 text-xl store-header">price</p>
+          <div class="flex flex-col">
+            <span class="mb-1 text-lg price tracking-wider">$ {{productStore.priceSelected}}</span>
+            <input type="range" class="opacity-50 w-36" (change)="filterByPrice($event)" [min]="productStore.min_price" [max]="productStore.max_price" />
+          </div>
+        </div>
+        <div class="flex">
+          <p class="tracking-wider capitalize  pt-3 text-lg">free shipping</p>
+          <input type="checkbox" class="ml-2" (click)="filterByShipping()">
+        </div>
+        <button (click)="clearFilters()" class="capitalize bg-rose-700 text-white tracking-wider py-0.5 px-2.5 rounded text-base mb-20">clear filters</button>
+      </section>
+      <section class="flex flex-col">
+        <app-filter-section />
+        <app-products />
+      </section>
+
+  </div>
+</section>

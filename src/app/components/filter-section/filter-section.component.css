@@ -1,0 +1,8 @@
+.line{
+  background-color: hsl(209, 34%, 30%);
+  opacity: 0.5;
+  height: 1px;
+}
+select{
+  background-color: hsl(206, 33%, 96%);
+}

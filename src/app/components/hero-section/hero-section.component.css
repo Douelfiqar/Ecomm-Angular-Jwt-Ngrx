@@ -1,0 +1,10 @@
+.hero-body{
+  width: 90vw;
+  max-width: 1170px;
+  height: calc(100vh - 8rem);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+  Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+p{
+  color: hsl(209, 34%, 30%);
+}

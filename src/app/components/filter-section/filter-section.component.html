@@ -1,0 +1,15 @@
+<section class="flex justify-between items-center">
+
+  <div>
+    <mat-icon class="cursor-pointer">view_cozy</mat-icon>
+    <mat-icon class="cursor-pointer">menu</mat-icon>
+  </div>
+
+  <div class="w-96 rounded line"></div>
+  <div>
+    <span class="capitalize tracking-wider">sort by</span>
+    <select *ngIf="(sortOptions$ | async) as optionsSort" class="rounded capitalize tracking-wider px-2 py-0.5 ml-3">
+      <option *ngFor="let sort of optionsSort" class="capitalize tracking-wider px-2">{{sort}}</option>
+    </select>
+  </div>
+</section>

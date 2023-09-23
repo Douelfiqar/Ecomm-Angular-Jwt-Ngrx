@@ -1,0 +1,38 @@
+<nav class="h-20 pt-1">
+ <div class="nav-center mx-auto flex justify-between">
+   <h3 class="text-2xl nav-head w-48 flex items-center tracking-wider p-2 md:w-96"><span class="text-3xl py-1.5 px-2 text-cyan-50 rounded bg-rose-300 mr-0.5">C</span><span class="text-2xl font-medium">hic</span></h3>
+
+
+     <ul class="flex items-center justify-between w-64 text-base capitalize tracking-wider md:hidden">
+       <li><a class="cursor-pointer" routerLink="">home</a></li>
+       <li><a class="cursor-pointer" routerLink="about">about</a></li>
+       <li><a class="cursor-pointer" routerLink="store">store</a></li>
+     </ul>
+
+   <div class="w-52 flex items-center justify-around ml-5 md:hidden">
+     <button class="tracking-wider h-10 font-medium text-lg flex items-center">Cart <mat-icon class="ml-2">person_add</mat-icon></button>
+     <button class="border-rose-300 h-10 px-2 signupBorder capitalize tracking-wider font-medium text-lg flex items-center">login <mat-icon class="ml-2">shopping_bag</mat-icon></button>
+     </div>
+
+      <div class="md:flex md:justify-center md:items-center md:text-2xl hidden md:block">
+        <button class="h-12 w-12" (click)="toggleNavFunction()"><mat-icon class="font-bold">menu</mat-icon></button>
+      </div>
+     <div [ngClass]="toggleNav ? 'sidebar' : 'hideSidebar'">
+          <div class="sidebar-body">
+            <button class="btn-close" (click)="toggleNavFunction()"><mat-icon class="font-bold">close</mat-icon></button>
+
+            <ul class="flex flex-col h-48 sidebar-list items-center justify-between w-64 capitalize font-medium tracking-wider">
+              <li class="sidebar-link"><a class="cursor-pointer" routerLink="">home</a></li>
+              <li class="sidebar-link"><a class="cursor-pointer" routerLink="about">about</a></li>
+              <li class="sidebar-link"><a class="cursor-pointer" routerLink="store">store</a></li>
+            </ul>
+
+            <div class="w-52 flex justify-around mx-auto mt-12">
+              <button class="capitalize tracking-wider font-medium text-xl">Log in</button>
+              <button class="border-rose-300 border-2 px-2 py-1.5 capitalize tracking-wider font-medium text-xl">Sign up</button>
+            </div>
+
+          </div>
+     </div>
+ </div>
+</nav>
