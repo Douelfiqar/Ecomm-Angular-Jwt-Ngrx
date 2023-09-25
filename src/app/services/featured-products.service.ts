@@ -19,4 +19,7 @@ export class FeaturedProductsService {
     return this.http.get<Array<Product>>(`${this.domain}featuredProducts`);
   }
 
+  getSingleProduct(id:string): Observable<Product>{
+    return this.http.get<Product>(`${this.domain}getSingleProduct/${id}`)
+  }
 }

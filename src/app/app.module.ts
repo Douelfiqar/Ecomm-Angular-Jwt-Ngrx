@@ -22,7 +22,7 @@ import { BannerComponent } from './components/banner/banner.component';
 import { productsReducer } from "./state/productStore/allProducts.reducer";
 import { FilterSectionComponent } from './components/filter-section/filter-section.component';
 import { ProductsComponent } from './components/products/products.component';
-import { ArticleComponent } from './components/article/article.component';
+import { ArticleComponent } from './pages/article/article.component';
 
 @NgModule({
   declarations: [

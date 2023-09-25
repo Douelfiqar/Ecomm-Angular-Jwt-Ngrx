@@ -12,6 +12,7 @@ import {selectAllState} from "../../state/productStore/allProducts.selectors";
 export class StoreComponent implements OnInit{
 
   freeShipping : boolean = false;
+  keyWord : string = ''
   productStore$ = this.store.select(selectAllState);
   constructor(private productsService: AllProductsService, private store:Store) {
   }
@@ -20,8 +21,9 @@ export class StoreComponent implements OnInit{
        this.store.dispatch(ProductsActions.retrievedProductsList({ products }))
      })
   }
-
+  categorie : string = ''
   filterByCategory(categorie:string){
+    this.categorie = categorie
     this.store.dispatch(ProductsActions.retrievedProductsListByCategorie({ categorie }))
   }
   filterByCompany(event:any){
@@ -39,7 +41,7 @@ export class StoreComponent implements OnInit{
   }
   filterByPrice(event: any){
     let price = event.target.value;
-    this.store.dispatch(ProductsActions.retrievedProductsListByPrice({price}))
+    this.store.dispatch(ProductsActions.retrievedProductsListByPrice({ price }))
   }
   clearFilters(){
     this.store.dispatch(ClearFiltersAction())
@@ -47,6 +49,7 @@ export class StoreComponent implements OnInit{
 
   filterByKeyWord(event:any){
     let keyWord : string = event.target.value
+
     this.store.dispatch(ProductsActions.retrievedProductsListBySearch({ keyWord }))
   }
 }

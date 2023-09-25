@@ -15,3 +15,7 @@ export const ProductsActions = createActionGroup({
 });
 export const ClearFiltersAction = createAction('[Filter] Clear Filters');
 
+export const SortByLowerPrice = createAction('Retrieved Product List By Lower Price')
+export const SortByHighestPrice = createAction('Retrieved Product List By Highest Price')
+export const SortNameAZ = createAction('Retrieved Product List By Name A-Z')
+export const SortNameZA = createAction('Retrieved Product List By Name Z-A')

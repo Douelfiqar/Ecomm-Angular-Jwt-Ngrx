@@ -12,4 +12,4 @@ export const selectSortBy = createSelector(
 export const selectTempProducts = createSelector(
   selectAllState,
   (state: ProductStore) => state.appearnce_product
-)
+);

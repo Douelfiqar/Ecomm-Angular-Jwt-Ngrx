@@ -10,6 +10,7 @@ import {selectTempProducts} from "../../state/productStore/allProducts.selectors
 export class ProductsComponent {
     TempProducts$ = this.store.select(selectTempProducts);
     constructor(private store: Store) {
+
     }
 
 

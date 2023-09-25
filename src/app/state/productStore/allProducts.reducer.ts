@@ -1,6 +1,12 @@
 import {Product} from "../../interfaces/product.model";
 import {createReducer, on} from "@ngrx/store";
-import {ClearFiltersAction, ProductsActions} from "./allProducts.actions";
+import {
+  ClearFiltersAction,
+  ProductsActions,
+  SortByHighestPrice,
+  SortByLowerPrice,
+  SortNameAZ, SortNameZA
+} from "./allProducts.actions";
 import {ProductStore} from "../../interfaces/initialState.state";
 
 
@@ -43,22 +49,22 @@ export const productsReducer = createReducer(
   on(ProductsActions.retrievedProductsListByCategorie, (state, { categorie })=>{
 
     if(categorie === "all"){
-      let new_tempProducts : Product[] = state.products;
+      let new_tempProducts : Product[] = state.appearnce_product;
       return {...state, category_selected: categorie, appearnce_product: new_tempProducts}
     }
 
-    let tempProducts: Product[] = state.products
+    let tempProducts: Product[] = state.appearnce_product
     tempProducts = tempProducts.filter((product)=> product.category === categorie)
 
     return {...state, category_selected: categorie, appearnce_product: tempProducts}
   }),
   on(ProductsActions.retrievedProductsListByCompany, (state, {company})=>{
     if(company === "all"){
-      let new_tempProducts : Product[] = state.products;
+      let new_tempProducts : Product[] = state.appearnce_product;
       return {...state, company_selected: company, appearnce_product: new_tempProducts}
     }
 
-    let tempProducts: Product[] = state.products
+    let tempProducts: Product[] = state.appearnce_product
     tempProducts = tempProducts.filter((product)=> product.company === company)
 
     return {...state, company_selected: company, appearnce_product: tempProducts}
@@ -66,39 +72,59 @@ export const productsReducer = createReducer(
   on(ProductsActions.retrievedProductsListByColor, (state, {color})=>{
 
     if(color === "all"){
-      let new_tempProducts : Product[] = state.products;
+      let new_tempProducts : Product[] = state.appearnce_product;
       return {...state, color_selected: color, appearnce_product: new_tempProducts}
     }
 
-    let tempProducts: Product[] = state.products
+    let tempProducts: Product[] = state.appearnce_product
     tempProducts = tempProducts.filter((product)=>product.colors?.find((c)=> c === color));
 
     return {...state, color_selected: color, appearnce_product: tempProducts}
   })
   ,
   on(ProductsActions.retrievedProductsListByPrice, (state, {price})=>{
-      let tempProducts: Product[] = state.products;
+      let tempProducts: Product[] = state.appearnce_product;
       tempProducts = tempProducts.filter((product)=> product.price < price);
     return {...state, appearnce_product: tempProducts, priceSelected: price}
   })
   ,
   on(ProductsActions.retrievedProductsListByShipping, (state, {isFree})=>{
-    let tempProducts: Product[] = state.products
+    let tempProducts: Product[] = state.appearnce_product
     if(isFree)
           tempProducts = tempProducts.filter((product)=> product.shipping === true)
 
     return {...state, free_shipping: isFree, appearnce_product: tempProducts};
   }),
   on(ClearFiltersAction, (state)=>{
-  let tempProduct : Product[] = state.products;
+  let tempProduct : Product[] = state.appearnce_product;
   let tempMaxPrice : number = state.max_price;
     return {...state, appearnce_product: tempProduct, category_selected: 'all', colors_selected: 'all', company_selected: 'all',free_shipping: true, priceSelected: tempMaxPrice, sort_selected: 'none'}
   }),
   on(ProductsActions.retrievedProductsListBySearch, (state, {keyWord})=>{
-    let tempProduct : Product[] = state.products;
+    let tempProduct : Product[] = state.appearnce_product;
     tempProduct = tempProduct.filter( product => product.name?.includes(keyWord))
 
     return {...state, search: keyWord, appearnce_product: tempProduct}
+  }),
+  on(SortByLowerPrice, (state) => {
+    let TempProducts : Product[] = [...state.appearnce_product];
+    TempProducts = TempProducts.sort(function (a, b){ return a.price - b.price });
+    return { ...state, appearnce_product: TempProducts }
+  }),
+  on(SortByHighestPrice, (state)=>{
+    let TempProducts : Product[] = [...state.appearnce_product];
+    TempProducts = TempProducts.sort(function (a, b){ return  b.price - a.price });
+    return {...state, appearnce_product: TempProducts}
+  }),
+  on(SortNameAZ, (state)=>{
+    let TempProducts : Product[] = [...state.appearnce_product];
+    TempProducts = TempProducts.sort((a, b) => a.name?.localeCompare(b.name));
+    return {...state, appearnce_product: TempProducts}
+  }),
+  on(SortNameZA, (state)=>{
+  let TempProducts : Product[] = [...state.appearnce_product];
+  TempProducts = TempProducts.sort((a, b) => a.name?.localeCompare(b.name));
+  TempProducts = TempProducts.reverse();
+  return {...state, appearnce_product: TempProducts}
   })
-
 );
