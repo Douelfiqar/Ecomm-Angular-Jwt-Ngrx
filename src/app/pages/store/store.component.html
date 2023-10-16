@@ -1,4 +1,4 @@
-<section class="store">
+<section class="store mb-10" >
   <app-banner [bannerText]="'Store /'"/>
   <div class="store-body mx-auto mt-10" *ngIf="(productStore$ | async) as productStore">
       <section>
@@ -36,6 +36,9 @@
       <section class="flex flex-col">
         <app-filter-section />
         <app-products />
+        <div *ngIf="pages">
+          <button class="p-1 pl-1.5 ml-1 border-2 border-rose-300" *ngFor="let page of pages;let i=index" (click)="getAllProducts(i)">{{i+1}}</button>
+        </div>
       </section>
 
   </div>

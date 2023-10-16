@@ -13,7 +13,10 @@ export class AllProductsService {
       this.domain = env.domain
   }
 
-  getAllProducts(): Observable<Array<Product>>{
-    return this.http.get<Array<Product>>(`${this.domain}getAllProducts`);
+  getAllProducts(pageCurrent:number): Observable<Array<Product>>{
+    return this.http.get<Array<Product>>(`${this.domain}getAllProducts?pageCurrent=${pageCurrent}`);
+  }
+  getTotalPages(): Observable<number>{
+    return this.http.get<number>(`${this.domain}getCountProduct`)
   }
 }

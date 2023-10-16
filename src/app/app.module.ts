@@ -23,6 +23,7 @@ import { productsReducer } from "./state/productStore/allProducts.reducer";
 import { FilterSectionComponent } from './components/filter-section/filter-section.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ArticleComponent } from './pages/article/article.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { ArticleComponent } from './pages/article/article.component';
     NoopAnimationsModule,
     MatIconModule,
     HttpClientModule,
+    CommonModule,
     StoreModule.forRoot({ featuredProducts: featuredProductsReducer, allProduct: productsReducer}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
 

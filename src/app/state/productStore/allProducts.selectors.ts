@@ -1,5 +1,4 @@
 import {createFeatureSelector, createSelector} from "@ngrx/store";
-import {Product} from "../../interfaces/product.model";
 import {ProductStore} from "../../interfaces/initialState.state";
 
 export const selectAllState = createFeatureSelector<ProductStore>('allProduct');

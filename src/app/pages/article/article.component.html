@@ -1,1 +1,31 @@
-<h3>{{product?.name}}</h3>
+<section class="article">
+    <div class="center-article grid grid-cols-2">
+        <div>
+            <img src={{imgSelected}} alt={{product?.name}} class="imgArticle">
+            <div  class="flex mt-2"><button *ngFor="let myImg of product?.imgURL;let i = index" (click)="changeSelectedImg(i)"><img src={{myImg}} class="small-img" alt=""></button></div>
+        </div>
+        <div class="article-description">
+            <p class="capitalize tracking-wider font-semibold text-3xl">{{product?.name}} <span class="text-sm">( {{product?.reviews}} reviews )</span></p>
+            <p class="text-pink-500 tracking-wider font-normal text-lg">$ {{product?.price}}</p>
+            <div class="line bg-pink-300"></div>
+            <p class="tracking-wider text-base pt-5 text">{{product?.description}}</p>
+            <div class="flex flex-col">
+                <span class="tracking-wider capitalize text-lg text">company : {{product?.company}}</span>
+                <span class="tracking-wider capitalize text-lg text">category : {{product?.category}}</span>
+                <div class="flex">
+                    <span class="tracking-wider capitalize text-lg text">colors : </span>
+                    <div class="flex items-center">
+                        <span *ngFor="let color of product?.colors" (click)="changeSelectedColor(color)" [ngClass]="color===colorSelected ? 'border-2 border-white' : '' "  [style.background-color]="color" class="w-4 ml-1 opacity-50 cursor-pointer h-4 rounded-full flex"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="line bg-pink-300 mt-3"></div>
+            <div class="flex items-center">
+                <button class="btnStock"><mat-icon>minimize</mat-icon></button>
+                <span></span>
+                <mat-icon>add</mat-icon>
+            </div>
+            <button class="rounded-sm text-white capitalize tracking-wider bg-pink-300 mt-5 btn">add to cart</button>
+        </div>
+    </div>
+</section>

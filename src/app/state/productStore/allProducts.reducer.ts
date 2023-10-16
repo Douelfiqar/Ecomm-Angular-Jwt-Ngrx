@@ -25,7 +25,8 @@ const initialState: ProductStore = {
   priceSelected : 0,
   free_shipping : true,
   sort_by : ['lower price', 'highest price', 'name (A - Z)', 'name (Z - A)'],
-  sort_selected : 'none'
+  sort_selected : 'none',
+  total_pages: 0,
 }
 
 export const productsReducer = createReducer(
@@ -126,5 +127,8 @@ export const productsReducer = createReducer(
   TempProducts = TempProducts.sort((a, b) => a.name?.localeCompare(b.name));
   TempProducts = TempProducts.reverse();
   return {...state, appearnce_product: TempProducts}
+  }),
+  on(ProductsActions.getTotalPages, (state, { total_pages})=>{
+    return {...state, total_pages: total_pages};
   })
 );

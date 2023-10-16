@@ -11,6 +11,7 @@ export const ProductsActions = createActionGroup({
     'Retrieved Products List By Price': props<{ price: number}>(),
     'Retrieved Products List By Shipping': props<{ isFree: boolean}>(),
     'Retrieved Products List By Search': props<{ keyWord: string}>(),
+    'Get Total Pages': props<{total_pages: number}>()
   },
 });
 export const ClearFiltersAction = createAction('[Filter] Clear Filters');

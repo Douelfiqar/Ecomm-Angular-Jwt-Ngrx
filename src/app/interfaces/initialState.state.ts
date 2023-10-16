@@ -16,4 +16,5 @@ export interface ProductStore {
   free_shipping: boolean;
   sort_by : Array<string>;
   sort_selected : string;
+  total_pages: number;
 }
