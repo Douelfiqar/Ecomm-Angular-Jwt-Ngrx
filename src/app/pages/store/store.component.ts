@@ -9,18 +9,19 @@ import {selectAllState} from "../../state/productStore/allProducts.selectors";
   templateUrl: './store.component.html',
   styleUrls: ['./store.component.css']
 })
-export class StoreComponent implements OnInit{
+export class StoreComponent implements OnInit {
 
   freeShipping : boolean = false;
   keyWord : string = ''
   productStore$ = this.store.select(selectAllState);
   pages?: any[];
   pageCurrentTemp?: number;
+
   constructor(private productsService: AllProductsService, private store:Store) {
   }
+
   ngOnInit(): void {
     this.getAllProducts(0)
-
      // get total pages
      this.productsService.getTotalPages().subscribe((total_pages)=>{
        this.store.dispatch(ProductsActions.getTotalPages({ total_pages }));

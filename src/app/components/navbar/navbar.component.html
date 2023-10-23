@@ -10,11 +10,12 @@
      </ul>
 
    <div class="w-52 flex items-center justify-around ml-5 md:hidden">
-     <button class="tracking-wider h-10 font-medium text-lg flex items-center">Cart <mat-icon class="ml-2">person_add</mat-icon></button>
-     <button class="border-rose-300 h-10 px-2 signupBorder capitalize tracking-wider font-medium text-lg flex items-center">login <mat-icon class="ml-2">shopping_bag</mat-icon></button>
-     </div>
+     <button class="tracking-wider h-10 font-medium text-lg flex items-center cursor-pointer capitalize"><a routerLink="cart">cart</a> <mat-icon class="ml-2">person_add</mat-icon></button>
+    <a routerLink="/login"><button class="border-rose-300 h-10 px-2 signupBorder capitalize tracking-wider font-medium text-lg flex items-center">login <mat-icon class="ml-2">shopping_bag</mat-icon></button>
+    </a>
+    </div>
 
-      <div class="md:flex md:justify-center md:items-center md:text-2xl hidden md:block">
+      <div class="md:flex md:justify-center md:items-center md:text-2xl hidden">
         <button class="h-12 w-12" (click)="toggleNavFunction()"><mat-icon class="font-bold">menu</mat-icon></button>
       </div>
      <div [ngClass]="toggleNav ? 'sidebar' : 'hideSidebar'">

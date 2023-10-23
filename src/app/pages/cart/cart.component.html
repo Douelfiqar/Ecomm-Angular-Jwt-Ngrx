@@ -1,0 +1,42 @@
+<app-banner bannerText="Cart"></app-banner>
+
+<section class="cart-content">
+    <table>
+        <thead>
+            <tr>
+                <td class="title text-blue-950 firtChild">Item</td>
+                <td class="title text-blue-950">Price</td>
+                <td class="title text-blue-950">Quantity</td>
+                <td class="title text-blue-950">SubTotal</td>
+            </tr>
+        </thead>
+    </table>
+    <div class="line bg-blue-950"></div>
+
+        <div *ngIf="(cartProduct$ | async) as products">
+            <article *ngFor="let product of products.productsCart" class="flex">
+                <span class="childs flex justify-center items-center">
+                    <a [routerLink]="'/product/' + product.product?.id"><img class="w-30 h-20 object-cover imgArticle" src={{product.product?.imgURL?.[0]}} alt=""></a>
+                    <div class="flex flex-col ml-3">
+                        <span class="font-semibold tracking-widest text-lg capitalize ml-1">{{product.product?.name}}</span>   
+                        <div class="flex">
+                            <span *ngFor="let c of product.color">
+                                <div class="w-3.5 h-3.5 rounded-full opacity-50 ml-1" [style.background-color]="c"></div>
+                            </span>
+                        </div>
+                    </div>
+                </span>
+                <span class="childs flex justify-center items-center"><p class="font-semibold text-lg tracking-widest text-blue-950">${{product.product?.price}}</p></span>
+                <span class="childs flex justify-center items-center"><p class="font-semibold text-lg tracking-widest text-blue-950">{{product.quantity}}</p></span>
+                <span class="childs flex justify-center items-center"><p class="font-semibold text-lg tracking-widest text-blue-950">${{(product.product?.price || 0) * product.quantity}}</p></span>
+                <span class="childs flex justify-center items-center"><button (click)="deleteItem(product.product?.id)" class="font-semibold text-lg tracking-wides cursor-pointer border-transparent bg-transparent text-red-700"><mat-icon>delete icon</mat-icon></button></span>
+            </article>
+        </div>
+
+
+    <div class="line bg-blue-950"></div>
+    <div class="flex justify-between pl-4 pr-4 mt-12">
+        <a routerLink="/store"><button class="btn bg-rose-300">continue shopping</button></a>
+        <button class="btn bg-black" (click)="clearCart()">clear shopping cart</button>
+    </div>
+</section>

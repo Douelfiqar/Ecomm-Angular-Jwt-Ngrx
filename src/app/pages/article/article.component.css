@@ -12,13 +12,13 @@
 }
 
 .line{
-    width: 15vw;
+    width: 33vw;
     height: 1px;
     opacity: 0.5;
 }
 .imgArticle{
     width: 510px;
-    height: 370px;
+    height: 500px;
     object-fit: cover;
     border-radius: 4px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -32,7 +32,7 @@
 }
 .small-img{
     width: 100px;
-    height: 60px;
+    height: 75px;
     object-fit: cover;
     margin-left: 2px;
     border-radius: 4px;
@@ -41,4 +41,7 @@
 .btnStock{
     font-size: 2rem;
     padding: 2px 2px;
+}
+.title{
+    color: #102a42;
 }

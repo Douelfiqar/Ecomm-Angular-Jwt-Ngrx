@@ -24,6 +24,10 @@ import { FilterSectionComponent } from './components/filter-section/filter-secti
 import { ProductsComponent } from './components/products/products.component';
 import { ArticleComponent } from './pages/article/article.component';
 import { CommonModule } from '@angular/common';
+import { cartReducer } from './state/cart/cart.reducer';
+import { CartComponent } from './pages/cart/cart.component';
+import { LoginComponent } from './auth/login/login.component';
+import { LoginLayoutComponent } from './auth/login-layout/login-layout.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,10 @@ import { CommonModule } from '@angular/common';
     BannerComponent,
     FilterSectionComponent,
     ProductsComponent,
-    ArticleComponent
+    ArticleComponent,
+    CartComponent,
+    LoginComponent,
+    LoginLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +56,7 @@ import { CommonModule } from '@angular/common';
     MatIconModule,
     HttpClientModule,
     CommonModule,
-    StoreModule.forRoot({ featuredProducts: featuredProductsReducer, allProduct: productsReducer}),
+    StoreModule.forRoot({ featuredProducts: featuredProductsReducer, allProduct: productsReducer, cart: cartReducer}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
 
   ],
