@@ -16,7 +16,7 @@
         <div *ngIf="(cartProduct$ | async) as products">
             <article *ngFor="let product of products.productsCart" class="flex">
                 <span class="childs flex justify-center items-center">
-                    <a [routerLink]="'/product/' + product.product?.id"><img class="w-30 h-20 object-cover imgArticle" src={{product.product?.imgURL?.[0]}} alt=""></a>
+                    <a [routerLink]="'/product/' + product.product?.id"><img class="w-30 h-20 object-cover imgArticle" src={{product.product?.imgUrl?.[0]}} alt=""></a>
                     <div class="flex flex-col ml-3">
                         <span class="font-semibold tracking-widest text-lg capitalize ml-1">{{product.product?.name}}</span>   
                         <div class="flex">

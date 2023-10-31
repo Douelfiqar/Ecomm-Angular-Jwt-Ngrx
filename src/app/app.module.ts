@@ -11,7 +11,7 @@ import { HeroSectionComponent } from './components/hero-section/hero-section.com
 import { FeaturedProductsComponent } from './components/featured-products/featured-products.component';
 import { StoreModule } from '@ngrx/store';
 import {featuredProductsReducer} from "./state/featuredProduct/products.reducer";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { OurServicesComponent } from './components/our-services/our-services.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
@@ -27,7 +27,8 @@ import { CommonModule } from '@angular/common';
 import { cartReducer } from './state/cart/cart.reducer';
 import { CartComponent } from './pages/cart/cart.component';
 import { LoginComponent } from './auth/login/login.component';
-import { LoginLayoutComponent } from './auth/login-layout/login-layout.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AppHttpInterceptor } from './interceptors/app-http.interceptor';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,6 @@ import { LoginLayoutComponent } from './auth/login-layout/login-layout.component
     ArticleComponent,
     CartComponent,
     LoginComponent,
-    LoginLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -55,12 +55,15 @@ import { LoginLayoutComponent } from './auth/login-layout/login-layout.component
     NoopAnimationsModule,
     MatIconModule,
     HttpClientModule,
+    ReactiveFormsModule,
     CommonModule,
     StoreModule.forRoot({ featuredProducts: featuredProductsReducer, allProduct: productsReducer, cart: cartReducer}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
 
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AppHttpInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

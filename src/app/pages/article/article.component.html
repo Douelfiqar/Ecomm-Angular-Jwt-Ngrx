@@ -8,7 +8,7 @@
       />
       <div class="flex mt-2">
         <button
-          *ngFor="let myImg of product?.imgURL; let i = index"
+          *ngFor="let myImg of product?.imgUrl; let i = index"
           (click)="changeSelectedImg(i)"
         >
           <img src="{{ myImg }}" class="small-img" alt="" />

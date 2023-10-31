@@ -33,7 +33,7 @@ export class ArticleComponent implements OnInit{
 
       this.prodService.getSingleProduct(this.id).subscribe(prod=>{
         this.product = prod
-        this.imgSelected = prod?.imgURL?.[0]
+        this.imgSelected = prod?.imgUrl?.[0]
         this.colorSelected = prod?.colors?.[0]
       })
     })
@@ -41,7 +41,7 @@ export class ArticleComponent implements OnInit{
   }
 
   changeSelectedImg(index:number){
-    this.imgSelected = this.product?.imgURL?.[index]
+    this.imgSelected = this.product?.imgUrl?.[index]
   }
 
   changeSelectedColor(color:string){

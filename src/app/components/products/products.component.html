@@ -1,9 +1,10 @@
 <section class="mt-5 flex flex-wrap gap-4 mb-20" *ngIf="(TempProducts$ | async) as products">
   <article *ngFor="let product of products">
-    <a [routerLink]="'/product/' + product.id"><img [src]="product?.imgURL?.[0]" class="imageProduct h-44 object-cover rounded shadow-sm"></a>
+    <a [routerLink]="'/product/' + product.id"><img [src]="product?.imgUrl?.[0]" class="imageProduct h-44 object-cover rounded shadow-sm"></a>
     <div class="flex justify-between py-2 text-base textProduct">
       <span class="capitalize tracking-wider">{{product.name}}</span>
       <span class="capitalize tracking-wider text-rose-700 font-semibold">$ {{product.price}}</span>
     </div>
   </article>
+  <button (click)="tst()">clk me</button>
 </section>

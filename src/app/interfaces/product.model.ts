@@ -11,5 +11,5 @@ export interface Product{
   featured: boolean;
   company: string;
   colors: string[];
-  imgURL: string[];
+  imgUrl: string[];
 }

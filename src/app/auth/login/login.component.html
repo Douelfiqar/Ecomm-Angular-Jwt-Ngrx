@@ -1,1 +1,16 @@
-<p>login works!</p>
+<div class="loginContent pt-24">
+    <section class="grid grid-cols-2 centerLogin">
+    
+    <div class="centerImg">
+        <img class="w-96 h-96 object-cover imgLogin" src="assets/undraw_mobile_login_re_9ntv.svg" alt="">
+    </div>
+
+    <form [formGroup]="formLogin" (ngSubmit)="handleLogin()" class="flex flex-col items-center justify-center" >
+        <p class="text-center font-semibold tracking-widest  text-xl">Login</p>
+        <input type="text" placeholder="Username" class="border-b-2 border-b-gray-300 w-96 py-2 mb-5" formControlName="username">
+        <input type="password" placeholder="Password" class="border-b-2 border-b-gray-300 w-96 py-2 mb-5" formControlName="password">
+        <button class="border-2 py-1.5 px-8 border-rose-500 tracking-widest text-blue-950" type="submit">Login</button>
+    </form>
+   
+</section>
+</div>

@@ -7,7 +7,6 @@ import {StoreComponent} from "./pages/store/store.component";
 import {ArticleComponent} from "./pages/article/article.component";
 import { CartComponent } from './pages/cart/cart.component';
 import { LoginComponent } from './auth/login/login.component';
-import { LoginLayoutComponent } from './auth/login-layout/login-layout.component';
 
 const routes:Routes = [
   { path: '', component: HomeComponent },
@@ -15,13 +14,7 @@ const routes:Routes = [
   { path: 'store', component: StoreComponent},
   { path: 'product/:id', component: ArticleComponent },
   { path: 'cart', component: CartComponent},
-  {
-    path: 'login',
-    component: LoginLayoutComponent, // Use the new layout component
-    children: [
-      { path: '', component: LoginComponent } // LoginComponent is a child route
-    ]
-  }
+  { path: 'login', component: LoginComponent }
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
