@@ -5,7 +5,7 @@ import jwtDecode from 'jwt-decode';
 import { Auth } from '../interfaces/auth.model';
 import { Store } from '@ngrx/store';
 import { authReducer } from '../state/auth/auth.reducer';
-import { AuthActions } from '../state/auth/auth.action';
+import { AuthActions, AuthLogout } from '../state/auth/auth.action';
 import { authState } from '../state/auth/auth.selectors';
 
 @Injectable({
@@ -45,12 +45,11 @@ export class AuthService {
   }
 
   loadProfile(data: any) {
-    this.isAuthenticated = true
     this.accessToken = data['accessToken']
     let decodeJwt:any = jwtDecode(this.accessToken)
     this.username = decodeJwt.sub;
     this.roles = decodeJwt.scope;
-    console.log(decodeJwt);
+
     let auth:Auth = {
       isAuth: true,
       username : decodeJwt.sub,
@@ -61,9 +60,6 @@ export class AuthService {
   }
   
   logout(){
-    this.isAuthenticated = false;
-    this.roles = null;
-    this.username = null;
-    this.accessToken = "";
+    this.store.dispatch(AuthLogout())
   }
 }

@@ -8,17 +8,19 @@
     <form [formGroup]="formLogin" (ngSubmit)="handleLogin()" class="flex flex-col items-center justify-center" >
         <p class="text-center font-semibold tracking-widest text-blue-950 text-xl" *ngIf="register === false">Login</p>
         <p class="text-center font-semibold tracking-widest text-blue-950 text-xl" *ngIf="register === true">Register</p>
-
+        <p class="capitalize tracking-widest text-red-500 py-3" *ngIf="badCredentialsLogin === true">Incorrect username or password. Please try again.</p>
+        <p *ngIf="badCredentialsRegistration === true" class="capitalize tracking-widest text-red-500 py-3">Invalid credentials. Please check your information and try again.</p>
         <input type="text" placeholder="Username" class="border-b-2 border-b-gray-300 w-96 py-2 mb-5" formControlName="username">
         <input type="password" placeholder="Password" class="border-b-2 border-b-gray-300 w-96 py-2 mb-5" formControlName="password">
         
-            <input *ngIf="register === true" type="password" placeholder="Confirm Password" class="border-b-2 border-b-gray-300 w-96 py-2 mb-5" formControlName="confirm_password">
+            <input *ngIf="register === true"  [ngClass]="{ 'border-red-500': !checkConfirmingPwd(), 'border-green-500': checkConfirmingPwd() }"
+            (keyup)="checkConfirmingPwd()" type="password" placeholder="Confirm Password" class="border-b-2  w-96 py-2 mb-5" formControlName="confirm_password">
             <input *ngIf="register === true" type="text" placeholder="Name" class="border-b-2 border-b-gray-300 w-96 py-2 mb-5" formControlName="name">
             <input *ngIf="register === true" type="email" placeholder="Email" class="border-b-2 border-b-gray-300 w-96 py-2 mb-5" formControlName="email">
             <input *ngIf="register === true" type="text" placeholder="Phone Number" class="border-b-2 border-b-gray-300 w-96 py-2 mb-5" formControlName="phone_number">
         
         <button class="border-2 py-1.5 px-8 border-rose-500 tracking-widest text-blue-950" *ngIf="register === false" type="submit">Login</button>
-        <button class="border-2 py-1.5 px-8 border-rose-500 tracking-widest text-blue-950" *ngIf="register === true" type="submit">Register</button>
+        <button class="border-2 py-1.5 px-8 border-rose-500 tracking-widest text-blue-950" *ngIf="register === true" type="submit" >Register</button>
         <button class="border-none capitalize mt-3 tracking-widest text-blue-950" *ngIf="register === false" (click)="switchMethodeLogin()">still don't have an account ?</button>
         <button class="border-none capitalize mt-3 tracking-widest text-blue-950" *ngIf="register === true" (click)="switchMethodeLogin()">already have an account ?</button>
 

@@ -25,6 +25,8 @@ export class NavbarComponent implements OnInit {
     this.toggleNav = !this.toggleNav;
   }
 
-   
+   logout(){
+    this.authService.logout();
+   }
 
 }

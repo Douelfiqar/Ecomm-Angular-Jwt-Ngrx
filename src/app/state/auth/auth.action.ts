@@ -8,4 +8,4 @@ export const AuthActions = createActionGroup({
     },
   });
 
-  export const AuthLogout = createAction('Auth Logout')
+export const AuthLogout = createAction('Auth Logout')

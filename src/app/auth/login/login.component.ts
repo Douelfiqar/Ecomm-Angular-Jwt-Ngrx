@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
   
   register:boolean = false;
 
+  badCredentialsLogin: boolean = false;
+  badCredentialsRegistration: boolean = false;
 
   constructor(private fb:FormBuilder, private authService:AuthService, private router:Router){} 
 
@@ -36,13 +38,16 @@ export class LoginComponent implements OnInit {
     let pwd = this.formLogin.value.password
 
     if(this.register === false){
+      
       this.authService.login(username, pwd).subscribe({
         next : data => {
-          
+          console.log(data);
           this.authService.loadProfile(data);
-          //this.router.navigateByUrl("/store")
+          
+          this.router.navigateByUrl("/store")
         },
         error : err => {
+          this.badCredentialsLogin = true;
           console.log(err);
         }
       })
@@ -54,22 +59,36 @@ export class LoginComponent implements OnInit {
 
       this.authService.register(username, pwd, name, email, phone_number).subscribe({
         next : data => {
-          console.log(data);
           this.authService.loadProfile(data);
           this.router.navigateByUrl("/store")
         },
         error : err => {
+          this.badCredentialsRegistration = true
           console.log(err);
         }
       })
-
-
     }
   }
 
   switchMethodeLogin() {
-    return this.register = !this.register
+    this.register = !this.register
+    if(!this.register){
+      this.badCredentialsRegistration = false
+      this.badCredentialsLogin= false}
+    else{
+      this.badCredentialsLogin= false
+      this.badCredentialsRegistration = false
+    }
+  }
+  
+  logout(){
+    this.authService.logout()
   }
 
+  checkConfirmingPwd():boolean{
+    if(this.formLogin.value.password !== this.formLogin.value.confirm_password)
+      return false
+    return true;
+  }
 
 }
