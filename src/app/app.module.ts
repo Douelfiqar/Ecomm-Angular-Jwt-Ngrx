@@ -29,6 +29,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppHttpInterceptor } from './interceptors/app-http.interceptor';
+import { authReducer } from './state/auth/auth.reducer';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { AppHttpInterceptor } from './interceptors/app-http.interceptor';
     HttpClientModule,
     ReactiveFormsModule,
     CommonModule,
-    StoreModule.forRoot({ featuredProducts: featuredProductsReducer, allProduct: productsReducer, cart: cartReducer}),
+    StoreModule.forRoot({ featuredProducts: featuredProductsReducer, allProduct: productsReducer, cart: cartReducer, auth: authReducer}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
 
   ],

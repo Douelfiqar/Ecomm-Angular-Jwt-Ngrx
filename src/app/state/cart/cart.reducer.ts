@@ -15,7 +15,6 @@ export const cartReducer = createReducer(initialState,
         // remove the old product if he exist
         let newArray =  tempArray.filter(prod=>{return prod.product?.id !== singleProductCart.product?.id})
 
-
         newArray.push(singleProductCart)
         return {...state, productsCart: newArray}
     }),

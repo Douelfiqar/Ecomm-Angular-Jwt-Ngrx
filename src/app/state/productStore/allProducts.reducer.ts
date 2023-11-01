@@ -45,6 +45,7 @@ export const productsReducer = createReducer(
       if(product.price < min_price)
           min_price = product.price
     })
+    
     return {...state, products: products, appearnce_product: products, min_price: min_price, max_price: max_price, priceSelected: max_price }
   } ),
   on(ProductsActions.retrievedProductsListByCategorie, (state, { categorie })=>{

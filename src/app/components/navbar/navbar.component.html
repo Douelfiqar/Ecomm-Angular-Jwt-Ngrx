@@ -1,6 +1,6 @@
 <nav class="h-20 pt-1">
  <div class="nav-center mx-auto flex justify-between">
-   <h3 class="text-2xl nav-head w-48 flex items-center tracking-wider p-2 md:w-96"><span class="text-3xl py-1.5 px-2 text-cyan-50 rounded bg-rose-300 mr-0.5">C</span><span class="text-2xl font-medium">hic</span></h3>
+   <h3 class="text-2xl nav-head w-48 flex items-center tracking-wider p-2 md:w-96"><a routerLink="/"><span class="text-3xl py-1.5 px-2 text-cyan-50 rounded bg-rose-300 mr-0.5">C</span><span class="text-2xl font-medium">hic</span></a></h3>
 
 
      <ul class="flex items-center justify-between w-64 text-base capitalize tracking-wider md:hidden">
@@ -9,10 +9,10 @@
        <li><a class="cursor-pointer" routerLink="store">store</a></li>
      </ul>
 
-   <div class="w-52 flex items-center justify-around ml-5 md:hidden">
-     <button class="tracking-wider h-10 font-medium text-lg flex items-center cursor-pointer capitalize"><a routerLink="cart">cart</a> <mat-icon class="ml-2">person_add</mat-icon></button>
-    <a routerLink="/login"><button class="border-rose-300 h-10 px-2 signupBorder capitalize tracking-wider font-medium text-lg flex items-center">login <mat-icon class="ml-2">shopping_bag</mat-icon></button>
-    </a>
+   <div class="w-52 flex items-center justify-around ml-5 md:hidden" *ngIf="(stateAuth$ | async) as state">
+     <button class="tracking-wider h-10 font-medium text-lg flex items-center cursor-pointer capitalize"><a routerLink="cart">cart</a> <mat-icon class="ml-2">shopping_bag</mat-icon></button>
+     <a *ngIf="state.isAuth === false" routerLink="/login"><button class="border-rose-300 h-10 px-2 signupBorder capitalize tracking-wider font-medium text-lg flex items-center">login <mat-icon class="ml-2">person_add</mat-icon></button></a>
+     <button *ngIf="state.isAuth === true" class="border-rose-300 h-10 px-2 signupBorder capitalize tracking-wider font-medium text-lg flex items-center">logout <mat-icon class="ml-2">logout</mat-icon></button>
     </div>
 
       <div class="md:flex md:justify-center md:items-center md:text-2xl hidden">
@@ -28,8 +28,9 @@
               <li class="sidebar-link"><a class="cursor-pointer" routerLink="store">store</a></li>
             </ul>
 
-            <div class="w-52 flex justify-around mx-auto mt-12">
-              <button class="capitalize tracking-wider font-medium text-xl">Log in</button>
+            <div class="w-52 flex justify-around mx-auto mt-12" *ngIf="(stateAuth$ | async) as state">
+              <button *ngIf="state.isAuth === false" class="capitalize tracking-wider font-medium text-xl">Log in</button>
+              <button *ngIf="state.isAuth === true" class="capitalize tracking-wider font-medium text-xl">log out</button>
               <button class="border-rose-300 border-2 px-2 py-1.5 capitalize tracking-wider font-medium text-xl">Sign up</button>
             </div>
 
