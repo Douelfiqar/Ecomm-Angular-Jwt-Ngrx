@@ -7,6 +7,9 @@ import {StoreComponent} from "./pages/store/store.component";
 import {ArticleComponent} from "./pages/article/article.component";
 import { CartComponent } from './pages/cart/cart.component';
 import { LoginComponent } from './auth/login/login.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { AuthenticationGuard } from './guards/authentication.guard';
+import { LoginPageGuard } from './guards/login-page.guard';
 
 const routes:Routes = [
   { path: '', component: HomeComponent },
@@ -14,7 +17,8 @@ const routes:Routes = [
   { path: 'store', component: StoreComponent},
   { path: 'product/:id', component: ArticleComponent },
   { path: 'cart', component: CartComponent},
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent, canActivate: [LoginPageGuard] },
+  { path: 'checkout', component: CheckoutComponent, canActivate: [AuthenticationGuard]}
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

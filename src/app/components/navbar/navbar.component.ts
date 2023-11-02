@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { map } from 'rxjs';
 import { Auth } from 'src/app/interfaces/auth.model';
 import { AuthService } from 'src/app/services/auth.service';
-import { authState } from 'src/app/state/auth/auth.selectors';
+import { selectAuth } from 'src/app/state/auth/auth.selectors';
 
 @Component({
   selector: 'app-navbar',
@@ -12,13 +13,19 @@ import { authState } from 'src/app/state/auth/auth.selectors';
 export class NavbarComponent implements OnInit {
 
   toggleNav: boolean = false;
-  isAuth:boolean = false;
-  stateAuth$ = this.store.select(authState)
+  isAuth?: boolean;
 
-  constructor( private authService:AuthService, private store:Store) {
+  constructor(private store: Store, private authService:AuthService) {
+    this.store.select(selectAuth)
+      .pipe(
+        map((auth: Auth) => auth.isAuth)
+      )
+      .subscribe((isAuthenticated: boolean) => {
+        this.isAuth = isAuthenticated;
+      });
   }
+
   ngOnInit(): void {
-    this.isAuth = this.authService.isAuthenticated
   }
 
   toggleNavFunction():void{

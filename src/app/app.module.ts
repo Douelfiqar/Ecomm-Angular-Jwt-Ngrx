@@ -30,6 +30,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppHttpInterceptor } from './interceptors/app-http.interceptor';
 import { authReducer } from './state/auth/auth.reducer';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { authReducer } from './state/auth/auth.reducer';
     ArticleComponent,
     CartComponent,
     LoginComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,

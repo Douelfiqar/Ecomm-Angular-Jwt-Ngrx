@@ -6,7 +6,6 @@ import { Auth } from '../interfaces/auth.model';
 import { Store } from '@ngrx/store';
 import { authReducer } from '../state/auth/auth.reducer';
 import { AuthActions, AuthLogout } from '../state/auth/auth.action';
-import { authState } from '../state/auth/auth.selectors';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +13,6 @@ import { authState } from '../state/auth/auth.selectors';
 export class AuthService {
 
   domain?: string;
-  isAuthenticated:boolean = false;
-  roles:any;
-  username:any;
   accessToken!:string;
 
   constructor(private http:HttpClient, private store:Store) {
@@ -28,7 +24,6 @@ export class AuthService {
     let option = {
       headers: new HttpHeaders().set("Content-Type", "application/x-www-form-urlencoded")
     }
-
     let params = new HttpParams().set("username",username).set("password", password)
     
     return this.http.post(this.domain+"login", params, option)
@@ -47,8 +42,7 @@ export class AuthService {
   loadProfile(data: any) {
     this.accessToken = data['accessToken']
     let decodeJwt:any = jwtDecode(this.accessToken)
-    this.username = decodeJwt.sub;
-    this.roles = decodeJwt.scope;
+
 
     let auth:Auth = {
       isAuth: true,

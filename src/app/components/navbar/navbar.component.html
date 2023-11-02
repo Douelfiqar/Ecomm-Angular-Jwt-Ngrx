@@ -9,10 +9,10 @@
        <li><a class="cursor-pointer" routerLink="store">store</a></li>
      </ul>
 
-   <div class="w-52 flex items-center justify-around ml-5 md:hidden" *ngIf="(stateAuth$ | async) as state">
+   <div class="w-52 flex items-center justify-around ml-5 md:hidden">
      <button class="tracking-wider h-10 font-medium text-lg flex items-center cursor-pointer capitalize"><a routerLink="cart">cart</a> <mat-icon class="ml-2">shopping_bag</mat-icon></button>
-     <a *ngIf="state.isAuth === false" routerLink="/login"><button class="border-rose-300 h-10 px-2 signupBorder capitalize tracking-wider font-medium text-lg flex items-center">login <mat-icon class="ml-2">person_add</mat-icon></button></a>
-     <button (click)="logout()" *ngIf="state.isAuth === true" class="border-rose-300 h-10 px-2 signupBorder capitalize tracking-wider font-medium text-lg flex items-center">logout <mat-icon class="ml-2">logout</mat-icon></button>
+     <a *ngIf="!isAuth" routerLink="/login"><button class="border-rose-300 h-10 px-2 signupBorder capitalize tracking-wider font-medium text-lg flex items-center">login <mat-icon class="ml-2">person_add</mat-icon></button></a>
+     <button (click)="logout()" *ngIf="isAuth" class="border-rose-300 h-10 px-2 signupBorder capitalize tracking-wider font-medium text-lg flex items-center">logout <mat-icon class="ml-2">logout</mat-icon></button>
     </div>
 
       <div class="md:flex md:justify-center md:items-center md:text-2xl hidden">
@@ -28,9 +28,9 @@
               <li class="sidebar-link"><a class="cursor-pointer" routerLink="store">store</a></li>
             </ul>
 
-            <div class="w-52 flex justify-around mx-auto mt-12" *ngIf="(stateAuth$ | async) as state">
-              <button *ngIf="state.isAuth === false" class="capitalize tracking-wider font-medium text-xl">Log in</button>
-              <button (click)="logout()" *ngIf="state.isAuth === true" class="capitalize tracking-wider font-medium text-xl">log out</button>
+            <div class="w-52 flex justify-around mx-auto mt-12">
+              <button *ngIf="!isAuth" class="capitalize tracking-wider font-medium text-xl">Log in</button>
+              <button (click)="logout()" *ngIf="isAuth" class="capitalize tracking-wider font-medium text-xl">log out</button>
               <button class="border-rose-300 border-2 px-2 py-1.5 capitalize tracking-wider font-medium text-xl">Sign up</button>
             </div>
 
